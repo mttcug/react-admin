@@ -1,15 +1,19 @@
 
 
+
+import Project from "../components/Project/index"
+import Sign from "../components/Sign/index"
+
 const routes = [
 	// 项目管理
 	{
 		path: '/proj-manage',
-		component: () => import("../Components/Project/index")
+		component: Project
 	},
 	// 签文管理
 	{
 		path: '/sign-manage',
-		component: () => import("../Components/Sign/index")
+		component: Sign
 	}
 ]
 
