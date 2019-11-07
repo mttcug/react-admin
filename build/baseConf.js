@@ -37,10 +37,17 @@ const config = {
                     },
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(jpg|jpeg|png|gif)$/,
+                use: 'file-loader'
             }
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': require('../config/index')
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new htmlWabpackPlugin({
             filename: 'index.html',
