@@ -1,9 +1,13 @@
 import React from "react";
+import style from "./index.scss"
 
-const Header = () => {
+const Header = (Props) => {
+
+	
+
 	return (
-		<div>
-			我是头部
+		<div className={ style.header }>
+			<p className= { style.pageName }>{ Props.title }</p>
 		</div>
 	)
 }
