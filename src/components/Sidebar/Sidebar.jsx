@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { NavLink, Link } from "react-router-dom"
+import React from "react";
+import { NavLink } from "react-router-dom"
 import style from './index.scss'
 
 const sidebarItem = [
@@ -7,28 +7,25 @@ const sidebarItem = [
   { title: '签文管理', icon: '', link: 'sign-manage' }
 ]
 
-class Sidebar extends Component {
+const Sidebar = (Props) => {
 
-	toPage = (e) => {
-		console.log('怎么样')
+	const toPage = (title) => {
+		return () => Props.callback(title)
 	}
 
-	render () {
-		return (
-			<div className={style.sidebar}>
-				<ul>
-				{ 
-					sidebarItem.map((item, index) => 
-					(
-						<li key={ index } onClick={ this.toPage }>
-							<NavLink className={ style.sidebarItem } to={ item.link }>{ item.title }</NavLink>
-						</li>
-					))
-				}
-				</ul>
-			</div>
-		)
-	}
+	return (
+		<div className={style.sidebar}>
+			<ul className={style.container}>
+			{
+				sidebarItem.map((item, index) =>
+					<li key={ index } onClick={ toPage(item.title) }>
+						<NavLink className={ style.sidebarItem } to={ item.link }>{ item.title }</NavLink>
+					</li>
+				)
+			}
+			</ul>
+		</div>
+	)
 }
 
 export default Sidebar
