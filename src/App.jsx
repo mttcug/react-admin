@@ -1,14 +1,15 @@
-import React from "react";
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Home from "./page/Home/home"
-import ErrorPage from "./page/Error/index"
+import React from 'react'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import Home from "$P/Home/home"
+import ErrorPage from "$P/Error/index"
 
 const App = () => {
     return (
         <BrowserRouter>
             <Switch>
                 <Route path='/' component={ Home } />
-                <Route component={ ErrorPage } />
+                <Route path='/error' component={ ErrorPage } />
+                <Redirect to='/' />
             </Switch>
         </BrowserRouter>
     )
