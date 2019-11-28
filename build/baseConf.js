@@ -12,8 +12,10 @@ const config = {
     resolve: {
         extensions: [".js", '.jsx', ".json", ".html", ".scss"],
         alias: {
-            '@': './src',
-            "$C": "./src/Components"
+            '@': path.resolve(__dirname, '../src'),
+            '$C': path.resolve(__dirname, '../src/components'),
+            '$P': path.resolve(__dirname, '../src/page'),
+            '$R': path.resolve(__dirname, '../src/router')
         }
     },
     module: {
@@ -24,7 +26,7 @@ const config = {
                 use: 'babel-loader'
             },
             {
-                test: /\.scss$/,
+                test: /\.css|scss$/,
                 use: [
                     'style-loader',
                     {
@@ -35,7 +37,31 @@ const config = {
                             modules: true
                         }
                     },
-                    'sass-loader'
+                    {
+                      loader: 'postcss-loader',
+                      options: {
+                        ident: 'postcss',
+                        plugins: () => [
+                          require('postcss-flexbugs-fixes'),
+                          require('autoprefixer')({
+                            browsers: [
+                              '>1%',
+                              'last 4 versions',
+                              'Firefox ESR',
+                              'not ie < 9',
+                            ],
+                            flexbox: 'no-2009',
+                          }),
+                        ],
+                      },
+                    },
+                    'sass-loader',
+                    {
+                        loader: 'sass-resources-loader',
+                        options: {
+                            resources: [path.resolve(__dirname, '../src/app.scss')]
+                        }
+                    }
                 ]
             },
             {
