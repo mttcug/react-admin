@@ -22,6 +22,7 @@
     "@babel/preset-es2015": "^7.0.0-beta.53",
     "@babel/preset-es2016": "^7.0.0-beta.53",
     "@babel/preset-react": "^7.6.3",
+    "autoprefixer": "^9.7.2",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
@@ -30,7 +31,10 @@
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.0",
+    "sass-resources-loader": "^2.0.1",
     "style-loader": "^1.0.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.41.2",
@@ -39,6 +43,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "antd": "^3.25.3",
     "koa": "^2.11.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
