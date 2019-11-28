@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Header from "$C/Header"
 import Sidebar from "$C/Sidebar"
 import { Route, Switch } from 'react-router-dom'
-import pathes from '$R/index'
-import './Home.scss'
+import pathes from '$R/router'
+import style from './Home.scss'
 
 class Home extends Component {
 
@@ -24,7 +24,7 @@ class Home extends Component {
 		return (
 			<div>
 				<Sidebar title={ this.state.title } callback={ this.changeDefaultProps } />
-				<div className="content">
+				<div className={ style.content }>
 					<Header title={ this.state.title } />
 					<div>
 						<p>正文内容哦</p>
