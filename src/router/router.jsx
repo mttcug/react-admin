@@ -1,7 +1,7 @@
 
 import React, { lazy, Suspense } from 'react'
-const Project = lazy(() => import('../Components/Project'))
-const Sign = lazy(() => import('../Components/Sign'))
+const Project = lazy(() => import('$C/Project'))
+const Sign = lazy(() => import('$C/Sign'))
 
 const SuspenseComponent = (Component) => {
 	return props => (
