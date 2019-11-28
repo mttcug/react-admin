@@ -26,7 +26,7 @@ const config = {
                 use: 'babel-loader'
             },
             {
-                test: /\.css|scss$/,
+                test: /\.(css|scss)$/,
                 use: [
                     'style-loader',
                     {
@@ -37,24 +37,7 @@ const config = {
                             modules: true
                         }
                     },
-                    {
-                      loader: 'postcss-loader',
-                      options: {
-                        ident: 'postcss',
-                        plugins: () => [
-                          require('postcss-flexbugs-fixes'),
-                          require('autoprefixer')({
-                            browsers: [
-                              '>1%',
-                              'last 4 versions',
-                              'Firefox ESR',
-                              'not ie < 9',
-                            ],
-                            flexbox: 'no-2009',
-                          }),
-                        ],
-                      },
-                    },
+                    'postcss-loader',
                     'sass-loader',
                     {
                         loader: 'sass-resources-loader',
