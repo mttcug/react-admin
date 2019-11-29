@@ -1,43 +1,37 @@
-import React, { Component } from "react";
-import Header from "$C/Header"
-import Sidebar from "$C/Sidebar"
+import React, { useState } from "react"
+import { Layout } from 'antd'
+import Head from "$C/Head"
+import SideColumn from "$C/SideColumn"
 import { Route, Switch } from 'react-router-dom'
 import pathes from '$R/router'
-import style from './Home.scss'
 
-class Home extends Component {
+const Home = () => {
 
-	constructor () {
-		super()
-		this.state = {
-			title: ''
-		}
+	let [ collapsed, setCollapsed ] = useState(true)
+
+	const toggleSidebar = (_collapsed) => {
+		console.log('_collapsed:', _collapsed)
+		setCollapsed(_collapsed)
 	}
 
-	changeDefaultProps = (_title) => {
-		this.setState({
-			title: _title
-		})
-	}
-
-	render () {
-		return (
-			<div>
-				<Sidebar title={ this.state.title } callback={ this.changeDefaultProps } />
-				<div className={ style.content }>
-					<Header title={ this.state.title } />
-					<div>
-						<p>正文内容哦</p>
-						<Switch>
-							{
-								pathes.map((routeItem, index) => <Route key={ index } path={ routeItem.path } component={ routeItem.component } />)
-							}
-						</Switch>
-					</div>
+	return (
+		<Layout>
+			<SideColumn collapsed={ collapsed }></SideColumn>
+			<Layout>
+				<Head collapsed={ collapsed } callBack = { toggleSidebar }></Head>
+				<div
+					style={{
+						margin: '24px 16px',
+						padding: 24,
+						background: '#fff',
+						minHeight: 280,
+					}}
+				>
+					Content
 				</div>
-			</div>
-		)
-	}
+			</Layout>
+		</Layout>
+	)
 }
 
 export default Home
