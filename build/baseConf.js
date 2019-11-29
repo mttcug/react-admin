@@ -10,7 +10,7 @@ const config = {
         filename: "[name].[hash].js"
     },
     resolve: {
-        extensions: [".js", '.jsx', ".json", ".html", ".scss"],
+        extensions: [".js", '.jsx', ".json", ".html", ".scss", '.css'],
         alias: {
             '@': path.resolve(__dirname, '../src'),
             '$C': path.resolve(__dirname, '../src/components'),
@@ -30,20 +30,13 @@ const config = {
                 use: [
                     'style-loader',
                     {
-                        loader: 'css-loader',
-                        options: {
-                            url: true,
-                            import: true,
-                            modules: true
-                        }
+                        loader: 'css-loader'
                     },
-                    'postcss-loader',
-                    'sass-loader',
                     {
-                        loader: 'sass-resources-loader',
+                        loader: 'sass-loader',
                         options: {
-                            resources: [path.resolve(__dirname, '../src/app.scss')]
-                        }
+                            sourceMap: true
+                        },
                     }
                 ]
             },
