@@ -1,4 +1,9 @@
-.app {
-  margin: 0;
-  padding: 0;
+
+@import '~antd/dist/antd.css';
+
+#app {
+  height: 100%;
+  .ant-layout{
+    height: 100%;
+  }
 }
