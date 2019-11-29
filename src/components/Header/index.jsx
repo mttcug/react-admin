@@ -1,15 +1,26 @@
-import React from "react";
-import style from "./index.scss"
+import React, { useState } from "react"
+import { Layout, Icon } from 'antd'
+const {  Header } = Layout
+import './index.scss'
 
-const Header = (Props) => {
+const Head = (Props) => {
 
-	
+	let [ collapsed, setCollapsed ] = useState(Props.collapsed)
+
+	const toggle = () => {
+		setCollapsed(!collapsed)
+		Props.callBack(collapsed)
+	}
 
 	return (
-		<div className={ style.header }>
-			<p className= { style.pageName }>{ Props.title }</p>
-		</div>
+		<Header style={{ background: '#fff' }}>
+			<Icon
+				className='trigger'
+				type={ collapsed ? 'menu-unfold' : 'menu-fold' }
+				onClick={ toggle }
+			/>
+		</Header>
 	)
 }
 
-export default Header
+export default Head
