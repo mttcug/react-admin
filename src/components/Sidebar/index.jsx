@@ -1,31 +1,31 @@
-import React from "react";
-import { NavLink } from "react-router-dom"
-import style from './index.scss'
+import React from "react"
+import { Layout, Menu, Icon } from 'antd'
+import { Route, NavLink } from 'react-router-dom'
+import './index.scss'
 
-const sidebarItem = [
-  { title: '项目管理', icon: '', link: 'proj-manage' },
-  { title: '签文管理', icon: '', link: 'sign-manage' }
-]
+const {  Sider } = Layout
+const SideColumn = (Props) => {
 
-const Sidebar = (Props) => {
-
-	const toPage = (title) => {
-		return () => Props.callback(title)
-	}
+	const sideLinks = [
+		{ id: '1', name: '项目管理', link: '/proj-manage', icon: 'user' },
+		{ id: '2', name: '签文管理', link: '/sign-manage', icon: 'video-camera' },
+		{ id: '3', name: '图片管理', link: '/proj-manage', icon: 'upload' },
+	]
 
 	return (
-		<div className={style.sidebar}>
-			<ul className={style.container}>
+		<Sider trigger={null} collapsible collapsed={ Props.collapsed }>
+			<Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
 			{
-				sidebarItem.map((item, index) =>
-					<li key={ index } onClick={ toPage(item.title) }>
-						<NavLink className={ style.sidebarItem } to={ item.link }>{ item.title }</NavLink>
-					</li>
+				sideLinks.map(menu => 
+					<Menu.Item key={ menu.id }>
+						<Icon type={ menu.icon } />
+						<NavLink className='navLink' to={ menu.link }>{ menu.name }</NavLink>
+					</Menu.Item>
 				)
 			}
-			</ul>
-		</div>
+			</Menu>
+		</Sider>
 	)
 }
 
-export default Sidebar
+export default SideColumn
