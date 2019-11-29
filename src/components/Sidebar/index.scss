@@ -1,23 +1,10 @@
 
-.sidebar {
-  width: 250px;
-  background: rgb(50, 65, 87);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  .container {
-    padding: 0;
-    li {
-      list-style: none;
-      .sidebarItem {
-        display: block;
-        height: 56px;
-        line-height: 56px;
-        text-align: center;
-        color: #fff;
-        text-decoration: none;
-      }
-    }
-  }
+
+.logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+.navLink {
+  color: white;
 }
