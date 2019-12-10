@@ -7,6 +7,7 @@ const config = {
     entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, '../cx-react'),
+        chunkFilename: '[name].[hash].js',
         filename: "[name].[hash].js"
     },
     resolve: {
@@ -50,7 +51,6 @@ const config = {
         new webpack.DefinePlugin({
             'process.env': require('../config/index')
         }),
-        new webpack.HotModuleReplacementPlugin(),
         new htmlWabpackPlugin({
             filename: 'index.html',
             template: 'index.html',
