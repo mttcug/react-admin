@@ -14,7 +14,7 @@ const SuspenseComponent = (Component) => {
 const routes = [
 	// 项目管理
 	{
-		path: /\/(proj-manage)?/,
+		path: '/(proj-manage)?',
 		component: SuspenseComponent(Project)
 	},
 	// 签文管理
