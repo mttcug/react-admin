@@ -6,7 +6,6 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
 const config = merge(baseConf, {
     mode: 'production',
-    devtool: 'source-map',
 	optimization: {
 		runtimeChunk: {
 			name: 'manifest'
@@ -45,17 +44,11 @@ const config = merge(baseConf, {
 			minChunks: 1,
 			maxAsyncRequests: 1024,
 			maxInitialRequests: 1024,
-			name: true,
+			name: false,
 			cacheGroups: {
-				default: false,
-				vue: {
-					name: 'vue',
-					chunks: 'initial',	// 表示显示块的范围，有三个可选值：initial(初始块)、async(按需加载块)、all(全部块，默认)
-					minChunks: 1,
-					priority: 3,
-					reuseExistingChunk: false,
-					test: /vue/
-				},
+				default: {
+                    name: 'page'
+                },
 				router: {
 					name: 'router',
 					chunks: 'initial',
@@ -73,21 +66,21 @@ const config = merge(baseConf, {
 					// test: /node_modules\/(.*)\.js/
 					test: /[\\/]node_modules[\\/]/
 				},
-				assets: {
-					name: 'assets',
-					chunks: 'all',
-					minChunks: 2,
-					priority: 3,
-					reuseExistingChunk: true,
-					test: path.resolve('src/assets')
-				},
+                reactBase: {
+                  test: (module) => {
+                    return /react|redux|prop-types/.test(module.context);
+                  }, // 直接使用 test 来做路径匹配，抽离react相关代码
+                  chunks: "initial",
+                  name: "reactBase",
+                  priority: 1,
+                },
 				components: {
 					name: 'components',
 					chunks: 'all',
-					minChunks: 2,
+					minChunks: 1,
 					priority: 3,
 					reuseExistingChunk: true,
-					test: path.resolve('src/components')
+					test: path.resolve(__dirname, '../src/components/')
 				},
 				styles: {
 					name: 'styles',
