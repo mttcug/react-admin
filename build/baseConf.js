@@ -22,28 +22,48 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.tsx?$/,
                 exclude: /node_modules/,
-                use: 'babel-loader'
-            },
-            {
-                test: /\.(css|scss)$/,
                 use: [
-                    'style-loader',
                     {
-                        loader: 'css-loader'
+                        loader: 'babel-loader'
                     },
                     {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: true
-                        },
+                        loader: 'ts-loader'
                     }
                 ]
             },
             {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            cacheDirectory: true,
+                            plugins: [
+                                'react-hot-loader/babel'
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-sprite-loader',
+                include: [path.resolve('../src/assets/svg')],
+                options: {
+                    symbolId: '[name]'
+                }
+            },
+            {
                 test: /\.(jpg|jpeg|png|gif)$/,
-                use: 'file-loader'
+                exclude: [path.resolve('../src/assets/svg')],
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: 'src/assets/img/[name].[hash:7].[ext]'
+                }
             }
         ]
     },
