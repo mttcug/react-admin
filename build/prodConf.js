@@ -3,9 +3,17 @@ const baseConf = require('./baseConf')
 const merge = require('webpack-merge')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const utils = require('./utils.js')
 
 const config = merge(baseConf, {
     mode: 'production',
+    module: {
+        rules: utils.styleLoaders({
+            sourceMap: false,
+            extract: true,
+            usePostCSS: true
+        })
+    },
 	optimization: {
 		runtimeChunk: {
 			name: 'manifest'
@@ -49,14 +57,6 @@ const config = merge(baseConf, {
 				default: {
                     name: 'page'
                 },
-				router: {
-					name: 'router',
-					chunks: 'initial',
-					minChunks: 1,
-					priority: 3,
-					reuseExistingChunk: false,
-					test: /router|service/
-				},
 				vendor: {
 					name: 'vendor',
 					chunks: 'initial',
@@ -73,23 +73,7 @@ const config = merge(baseConf, {
                   chunks: "initial",
                   name: "reactBase",
                   priority: 1,
-                },
-				components: {
-					name: 'components',
-					chunks: 'all',
-					minChunks: 1,
-					priority: 3,
-					reuseExistingChunk: true,
-					test: path.resolve(__dirname, '../src/components/')
-				},
-				styles: {
-					name: 'styles',
-					chunks: 'all',
-					minChunks: 2,
-					reuseExistingChunk: true,
-					enforce: true,
-					test: /\.(styl|scss|css)$/
-				}
+                }
 			}
 		}
 	}
