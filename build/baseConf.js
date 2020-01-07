@@ -11,12 +11,9 @@ const config = {
         filename: "[name].[hash].js"
     },
     resolve: {
-        extensions: [".js", '.jsx', ".json", ".html", ".scss", '.css'],
+        extensions: ["ts", "tsx", ".js", '.jsx', ".json", ".html", ".scss", '.css'],
         alias: {
-            '@': path.resolve(__dirname, '../src'),
-            '$C': path.resolve(__dirname, '../src/components'),
-            '$P': path.resolve(__dirname, '../src/page'),
-            '$R': path.resolve(__dirname, '../src/router')
+            '@': path.resolve(__dirname, '../src/')
         }
     },
     module: {
@@ -29,7 +26,7 @@ const config = {
                         loader: 'babel-loader'
                     },
                     {
-                        loader: 'ts-loader'
+                        loader: 'awesome-typescript-loader'
                     }
                 ]
             },
